@@ -6,7 +6,9 @@
     <img id="tile_067" src="/img/landscapeTiles_067.png" alt="tile" style="display: none">
     <img id="tile_081" src="/img/cityTiles_081.png" alt="tile" style="display: none">
     <img id="tile_over" src="/img/over_zone.png" alt="tile" style="display: none">
-    <div id="container" data-landscape-update="{{ landscapeUrl }}">
+    <div id="stage-parent">
+        <div id="container" data-landscape-update="{{ landscapeUrl }}" data-array-config="{{ arrayConfig | json_encode() }}">
+        </div>
     </div>
 {% endblock %}
 
