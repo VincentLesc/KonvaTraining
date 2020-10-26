@@ -12,7 +12,6 @@ export class KonvaManager{
   }
 
   addLandscapeLayer() {
-    console.log(this.getLandscapeLayer());
     if (!this.getLandscapeLayer()) {
       this.stage.add(new Konva.Layer({
         id: 'landscape_layer',

@@ -1,0 +1,7 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        landscape_item:
+            uri_prefix: /images/landscape/item
+            upload_destination: '%kernel.project_dir%/public/images/landscape/item'

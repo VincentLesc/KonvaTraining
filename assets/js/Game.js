@@ -6,6 +6,7 @@ export class Game{
     constructor() {
         global.konvaManager = new KonvaManager();
         global.konvaManager.setStage(1500, 750);
+        console.log('ici');
         this.globalGridParameters = JSON.parse(document.getElementById('container').dataset.arrayConfig);
 
         this.landscape = this.setLandscape(this.globalGridParameters, document.getElementById('container').dataset.landscapeUrl);
