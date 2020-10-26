@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GameController!{% endblock %}
+
+{% block body %}
+    <img id="tile_067" src="/img/landscapeTiles_067.png" alt="tile" style="display: none">
+    <img id="tile_081" src="/img/cityTiles_081.png" alt="tile" style="display: none">
+    <img id="tile_over" src="/img/over_zone.png" alt="tile" style="display: none">
+    <div id="container" data-landscape-update="{{ landscapeUrl }}">
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app')}}
+{% endblock %}
