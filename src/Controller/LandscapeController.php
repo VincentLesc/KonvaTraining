@@ -17,7 +17,6 @@ class LandscapeController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        dump($request);
         return new JsonResponse(null, 200);
     }
 }

@@ -1,52 +1,30 @@
 import {Landscape} from "./components/landscape/Landscape";
+import {UserInterface} from "./components/user_interface/UserInterface";
+import {KonvaManager} from "./KonvaManager";
 
 export class Game{
     constructor() {
-        this.stage = this.setStage();
-        this.globalGridParameters = this.buildZone();
+        let a = new Date();
+        global.konvaManager = new KonvaManager();
+        global.konvaManager.setStage(1500, 750);
+        console.log('ici');
+        this.globalGridParameters = JSON.parse(document.getElementById('container').dataset.arrayConfig);
 
-        const self = this;
-        dispatcher.on('konvaLandscapeSet', function () {
-            self.stage.draw();
-        })
         this.landscape = this.setLandscape(this.globalGridParameters, document.getElementById('container').dataset.landscapeUrl);
-    }
+        this.userInterface = this.setUserInterface();
 
-    setStage() {
-        return new Konva.Stage({
-            container: 'container',   // id of container <div>
-            width: 1900,
-            height: 1024
-        });
-    }
-
-    buildZone() {
-        let index = 0;
-        let a=1;
-        let line=0;
-        let column=0;
-        let arrayConfig = [];
-        for (let j=0; j <2500+33; j= j+33) {
-            arrayConfig[line] = [];
-            index = index === 0 || index === 2 ? 1 : 2;
-            let i = index === 1 ? 0 : 66;
-            column = 0;
-            for ( i; i < 5000+132+line%2*66; i = i + 132) {
-                a++;
-                arrayConfig[line][column] = null;
-                column++;
-                index++;
-            }
-            line++;
-        }
-        return arrayConfig;
+        global.konvaManager.fitStageIntoParentContainer();
+        let b = new Date();
+        console.log(b-a);
     }
 
     setLandscape(grid, updateUrl) {
-        const landscape = new Landscape(grid, updateUrl);
-        this.stage.add(landscape.layer);
-        this.stage.draw();
-        console.log(this.stage);
-        return landscape;
+        return new Landscape(grid, updateUrl);
     }
+
+    setUserInterface() {
+        return new UserInterface();
+    }
+
+
 }
