@@ -26,7 +26,7 @@ class GameController extends AbstractController
         while ($row < 30) {
             $array[$row] = [];
             $column = 0;
-            while($column < 30) {
+            while($column < 10) {
                 $array[$row][] = [];
                 $column++;
             }

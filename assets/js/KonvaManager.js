@@ -1,6 +1,8 @@
 export class KonvaManager{
   constructor() {
     this.stage = null;
+    this.landscapeItemLoaded = [];
+    this.landscapeRowLoaded = [];
   }
 
   setStage(width, height) {
@@ -23,7 +25,6 @@ export class KonvaManager{
       }));
     }
     this.stage.draw();
-    console.log(this.stage);
   }
 
   getLandscapeLayer() {
@@ -31,32 +32,47 @@ export class KonvaManager{
   }
 
   addLandscapeRow(iteration,x,y) {
-    if (!this.getLandscapeRow(iteration)) {
-      this.getLandscapeLayer().add(new Konva.Group({
-          id: 'landscape_row_' + iteration,
-          x: x,
-          y: y,
-          stroke: 'red',
-          strokeWidth: '5px'
-        })
+    if (!this.landscapeRowLoaded[iteration]) {
+      const row = new Konva.Group({
+        id: 'landscape_row_' + iteration,
+        x: x,
+        y: y,
+        stroke: 'red',
+        strokeWidth: '5px'
+      });
+      this.getLandscapeLayer().add(
+        row
       );
+      this.landscapeRowLoaded.push(row);
     }
   }
 
+
   getLandscapeRow(iteration) {
-    return this.getLandscapeLayer().findOne('#landscape_row_' + iteration);
+    return this.landscapeRowLoaded[iteration];
   }
 
   addLandscapeZone(line, column, image) {
-    if (!this.getLandscapeZone(line, column) && this.getLandscapeRow(line)) {
+    let a = new Date();
+    const row = this.getLandscapeRow(line);
+    if (this.landscapeItemLoaded[image.src]) {
+      const konvaImage = this.landscapeItemLoaded[image.src].clone();
+      konvaImage.id('zone_' + line + '_' + column);
+      konvaImage.x(column*132 - 190);
+      row.add(konvaImage);
+    } else if (!this.landscapeItemLoaded[image.src] && row) {
       const konvaImage = new Konva.Image({
         id: 'zone_' + line + '_' + column,
-        x: column*132,
-        y: 0,
+        x: column*132 - 190,
+        y: 0-282.5,
         image: image,
+        scaleX: 1.05,
+        scaleY: 1.05
       });
-      this.getLandscapeRow(line).add(konvaImage);
+      this.landscapeItemLoaded[image.src] = konvaImage;
+      row.add(konvaImage);
     }
+    let b = new Date();
   }
 
   getLandscapeZone(line, column) {

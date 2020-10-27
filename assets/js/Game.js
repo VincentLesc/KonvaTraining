@@ -4,6 +4,7 @@ import {KonvaManager} from "./KonvaManager";
 
 export class Game{
     constructor() {
+        let a = new Date();
         global.konvaManager = new KonvaManager();
         global.konvaManager.setStage(1500, 750);
         console.log('ici');
@@ -13,28 +14,8 @@ export class Game{
         this.userInterface = this.setUserInterface();
 
         global.konvaManager.fitStageIntoParentContainer();
-    }
-
-    buildZone() {
-        let index = 0;
-        let a=1;
-        let line=0;
-        let column=0;
-        let arrayConfig = [];
-        for (let j=0; j <1000+33; j= j+33) {
-            arrayConfig[line] = [];
-            index = index === 0 || index === 2 ? 1 : 2;
-            let i = index === 1 ? 0 : 66;
-            column = 0;
-            for ( i; i < 1920+132+line%2*66; i = i + 132) {
-                a++;
-                arrayConfig[line][column] = null;
-                column++;
-                index++;
-            }
-            line++;
-        }
-        return arrayConfig;
+        let b = new Date();
+        console.log(b-a);
     }
 
     setLandscape(grid, updateUrl) {
