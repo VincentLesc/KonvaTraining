@@ -23,10 +23,10 @@ class GameController extends AbstractController
     private function getArrayConfig() {
         $array = [];
         $row = 0;
-        while ($row < 30) {
+        while ($row < 48) {
             $array[$row] = [];
             $column = 0;
-            while($column < 10) {
+            while($column < 24) {
                 $array[$row][] = [];
                 $column++;
             }

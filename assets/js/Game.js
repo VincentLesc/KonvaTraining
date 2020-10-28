@@ -6,12 +6,11 @@ export class Game{
     constructor() {
         let a = new Date();
         global.konvaManager = new KonvaManager();
-        global.konvaManager.setStage(1500, 750);
-        console.log('ici');
+        global.konvaManager.setStage(1000, 750);
         this.globalGridParameters = JSON.parse(document.getElementById('container').dataset.arrayConfig);
 
         this.landscape = this.setLandscape(this.globalGridParameters, document.getElementById('container').dataset.landscapeUrl);
-        this.userInterface = this.setUserInterface();
+        // this.userInterface = this.setUserInterface();
 
         global.konvaManager.fitStageIntoParentContainer();
         let b = new Date();
